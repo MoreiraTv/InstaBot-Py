@@ -79,7 +79,9 @@ class InstagramBot:
                 "window.scrollTo(0, document.body.scrollHeight);")
             try:
                 driver.find_element_by_xpath(
-                    '//button[@class="dCJp8 afkep"]').click()
+                    '//button[@type="button"]').click()
+                driver.find_element_by_xpath(
+                    '//section/span/button[@type="button"]').click()
                 time.sleep(random.randint(19, 23))
             except Exception as e:
                 print(e)
