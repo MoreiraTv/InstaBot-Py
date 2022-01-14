@@ -1,0 +1,15 @@
+1642173214725	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\will\\AppData\\Local\\Temp\\rust_mozprofileSF89g6"
+1642173215239	Marionette	INFO	Marionette enabled
+JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't find profile directory.
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at C:\\Users\\will\\AppData\\Local\\Temp\\rust_mozprofileSF89g6\\search.json.mozlz4", (void 0)))
+1642173218086	Marionette	INFO	Listening on port 61583
+1642173218437	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+1642173264535	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\will\\AppData\\Local\\Temp\\rust_mozprofilelCZVwB"
+1642173265036	Marionette	INFO	Marionette enabled
+JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't find profile directory.
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at C:\\Users\\will\\AppData\\Local\\Temp\\rust_mozprofilelCZVwB\\search.json.mozlz4", (void 0)))
+1642173267813	Marionette	INFO	Listening on port 63190
+1642173268221	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: LoginRecipes: "getRecipes: falling back to a synchronous message for:" "https://www.instagram.com"
+console.warn: LoginRecipes: "getRecipes: falling back to a synchronous message for:" "https://www.instagram.com"
+JavaScript error: resource://gre/modules/LoginManagerParent.jsm, line 136: TypeError: gRecipeManager is null

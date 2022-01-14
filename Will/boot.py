@@ -87,6 +87,6 @@ class InstagramBot:
 
 
 jhonatanBot = InstagramBot(
-    "seuusuario", "suasenha"
+    "botzaopog", "botzaopog435"
 )  # Entre com o usuário e senha aqui
 jhonatanBot.login()
