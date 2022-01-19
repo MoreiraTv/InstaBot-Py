@@ -103,6 +103,26 @@ class InstagramBot:
             except Exception as e:
                 print(e)
                 time.sleep(5)
+        
+        self.seguirFollowPerfil("filipedeschamps", 50)
+    
+    def seguirFollowPerfil(self, perfil, countFollow):
+        driver = self.driver
+
+        driver.get("https://www.instagram.com/" + perfil)
+        time.sleep(3)
+        hrefPerfil = '/'+ perfil + '/followers/'
+        driver.find_element(By.HREF, hrefPerfil ).click
+        driver.find_element_by_xpath('/html/body/div[6]/div/div/div[2]/ul/div')
+        time.sleep(3)
+        rounds = (countFollow / 12).ceil()
+        print(rounds)
+        for i in range(
+            1, rounds
+        ):  # Altere o segundo valor aqui para que ele desça a quantidade de páginas que você quiser: quer que ele desça 5 páginas então você deve alterar de range(1,3) para range(1,5)
+            driver.execute_script(
+                "window.scrollTo(0, document.body.scrollHeight);")
+            time.sleep(3)
 
 
 jhonatanBot = InstagramBot(
