@@ -5,12 +5,12 @@ import random
 
 
 class InstagramBot:
-    def __init__(self, username, password):
-        self.username = username
-        self.password = password
-        self.driver = webdriver.Firefox(
-            executable_path=r"./geckodriver.exe"
+    def __init__(self, cookies):
+        self.cookies = cookies
+        self.driver = webdriver.Chrome(
+            executable_path=r"./chromedriver.exe"
         )  # Coloque o caminho para o seu geckodriver aqui
+        # executable_path=r"./geckodriver.exe"
 
     def login(self):
         driver = self.driver
@@ -24,21 +24,40 @@ class InstagramBot:
         except:
             print('já estamos na página de login')
             pass
-        user_element = driver.find_element_by_xpath(
-            "//input[@name='username']")
-        user_element.clear()
-        time.sleep(random.randint(4, 6))
-        user_element.send_keys(self.username)
-        time.sleep(random.randint(4, 6))
-        password_element = driver.find_element_by_xpath(
-            "//input[@name='password']")
-        password_element.clear()
-        password_element.send_keys(self.password)
-        time.sleep(random.randint(4, 6))
-        password_element.send_keys(Keys.RETURN)
-        time.sleep(random.randint(4, 6))
+        
+        time.sleep(3)
+        #entrando na conta de usario pela sesion Id token sem precisar da senha do usuario
+        driver.add_cookie(self.cookies)
+
+        print("entrando na conta de usario pela sesion Id token sem precisar da senha do usuario")
+        driver.refresh()
+
+        time.sleep(3)
+
+        sizeElement = len(driver.find_elements_by_xpath('/html/body/div[5]/div/div/div/div[3]/button[2]'))
+        isPresent = sizeElement > 0
+        
+        if isPresent:
+            driver.find_element_by_xpath('/html/body/div[5]/div/div/div/div[3]/button[2]').click()
+        
+        #/html/body/div[5]/div/div/div/div[3]/button[2]
+        
+        self.capturaFollowCount()
+        
+    
+    def capturaFollowCount(self):
+        driver = self.driver
+        driver.find_element_by_xpath('//section/nav/div[2]/div/div/div[3]/div/div[6]/span').click()
+        time.sleep(3)
+        driver.find_element_by_xpath('//section/nav/div[2]/div/div/div[3]/div/div[6]/div[2]/div[2]/div[2]/a[1]').click()
+        time.sleep(2)
+        follows = driver.find_element_by_xpath('//header/section/ul/li[2]/a/span').text
+        
+        print(follows)
+        #//header/section/ul/li[1]/a/span
+
         self.curtir_fotos_com_a_hastag(
-            "programação"
+            "programaçao"
         )  # Altere aqui para a hashtag que você deseja usar.
 
     @staticmethod
@@ -79,7 +98,7 @@ class InstagramBot:
                 "window.scrollTo(0, document.body.scrollHeight);")
             try:
                 driver.find_element_by_xpath(
-                    '//button[@class="dCJp8 afkep"]').click()
+                    '//section/span/button[@type="button"]').click()
                 time.sleep(random.randint(19, 23))
             except Exception as e:
                 print(e)
@@ -88,6 +107,6 @@ class InstagramBot:
 
 jhonatanBot = InstagramBot(
     #está com 170 follows
-    "user", "password"
+    {'domain': '.instagram.com', 'expiry': 1674084111, 'httpOnly': True, 'name': 'sessionid', 'path': '/', 'secure': True, 'value': '51284129573%3AVzR0jTdM6aRo94%3A0'}
 )  # Entre com o usuário e senha aqui
 jhonatanBot.login()
