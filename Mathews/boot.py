@@ -112,9 +112,11 @@ class InstagramBot:
         driver.get("https://www.instagram.com/" + perfil)
         time.sleep(3)
         hrefPerfil = '/'+ perfil + '/followers/'
-        driver.find_element(By.HREF, hrefPerfil ).click
-        driver.find_element_by_xpath('/html/body/div[6]/div/div/div[2]/ul/div')
-        time.sleep(3)
+        elems = driver.find_element_by_css_selector("#react-root > section > main > div > header > section [href]").click()
+        
+        time.sleep(2)
+        driver.find_element_by_css_selector('body > div.RnEpo.Yx5HN > div > div > div.isgrP > ul > div')
+        time.sleep(2)
         rounds = (countFollow / 12).ceil()
         print(rounds)
         for i in range(
@@ -127,6 +129,8 @@ class InstagramBot:
 
 jhonatanBot = InstagramBot(
     #está com 170 follows
-    {'domain': '.instagram.com', 'expiry': 1674084111, 'httpOnly': True, 'name': 'sessionid', 'path': '/', 'secure': True, 'value': '51284129573%3AVzR0jTdM6aRo94%3A0'}
+    # {'domain': '.instagram.com', 'expiry': 1674084111, 'httpOnly': True, 'name': 'sessionid', 'path': '/', 'secure': True, 'value': '51284129573%3AVzR0jTdM6aRo94%3A0'}
+    # {'domain': '.instagram.com', 'expiry': 1674219274, 'httpOnly': True, 'name': 'sessionid', 'path': '/', 'secure': True, 'value': '51284129573%3Ag1z6etzQzy2Spv%3A2'}
+    { "domain": ".instagram.com", "expirationDate": 1674219274.173013, "httpOnly": True, "name": "sessionid", "path": "/", "secure": True, "session": False, "value": "51284129573%3AJKkpIyRalHhQQn%3A24"},
 )  # Entre com o usuário e senha aqui
 jhonatanBot.login()
