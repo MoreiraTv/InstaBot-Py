@@ -41,6 +41,8 @@ class InstagramBot:
             "programação"
         )  # Altere aqui para a hashtag que você deseja usar.
 
+
+
     @staticmethod
     def type_like_a_person(sentence, single_input_field):
         """ Este código irá basicamente permitir que você simule a digitação como uma pessoa """
@@ -86,9 +88,44 @@ class InstagramBot:
             except Exception as e:
                 print(e)
                 time.sleep(5)
+                
+        self.seguirFollowPerfil("filipedeschamps", 50)
+
+    def capturaFollowCount(self):
+        driver = self.driver
+        driver.find_element_by_xpath('//section/nav/div[2]/div/div/div[3]/div/div[6]/span').click()
+        time.sleep(3)
+        driver.find_element_by_xpath('//section/nav/div[2]/div/div/div[3]/div/div[6]/div[2]/div[2]/div[2]/a[1]').click()
+        time.sleep(2)
+        follows = driver.find_element_by_xpath('//header/section/ul/li[2]/a/span').text
+        
+        print(follows)
+        #//header/section/ul/li[1]/a/span
+
+        self.curtir_fotos_com_a_hastag(
+            "programaçao"
+        )  # Altere aqui para a hashtag que você deseja usar.
+
+    def seguirFollowPerfil(self, perfil, countFollow):
+        driver = self.driver
+
+        driver.get("https://www.instagram.com/" + perfil)
+        time.sleep(3)
+        hrefPerfil = '/'+ perfil + '/followers/'
+        driver.find_element(By.HREF, hrefPerfil ).click
+        driver.find_element_by_xpath('/html/body/div[6]/div/div/div[2]/ul/div')
+        time.sleep(3)
+        rounds = (countFollow / 12).ceil()
+        print(rounds)
+        for i in range(
+            1, rounds
+        ):  # Altere o segundo valor aqui para que ele desça a quantidade de páginas que você quiser: quer que ele desça 5 páginas então você deve alterar de range(1,3) para range(1,5)
+            driver.execute_script(
+                "window.scrollTo(0, document.body.scrollHeight);")
+            time.sleep(3)
 
 
 jhonatanBot = InstagramBot(
-    "botzaopog", "botzaopog435"
+    "botzaopog", "ocarahackeouobot"
 )  # Entre com o usuário e senha aqui
 jhonatanBot.login()
