@@ -2,6 +2,7 @@ from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 import time
 import random
+import math
 
 
 class InstagramBot:
@@ -57,7 +58,7 @@ class InstagramBot:
         #//header/section/ul/li[1]/a/span
 
         self.curtir_fotos_com_a_hastag(
-            "programaçao"
+            "memesbr"
         )  # Altere aqui para a hashtag que você deseja usar.
 
     @staticmethod
@@ -69,40 +70,41 @@ class InstagramBot:
             time.sleep(random.randint(1, 5) / 30)
 
     def curtir_fotos_com_a_hastag(self, hashtag):
-        driver = self.driver
-        driver.get("https://www.instagram.com/explore/tags/" + hashtag + "/")
-        time.sleep(5)
-        for i in range(
-            1, 3
-        ):  # Altere o segundo valor aqui para que ele desça a quantidade de páginas que você quiser: quer que ele desça 5 páginas então você deve alterar de range(1,3) para range(1,5)
-            driver.execute_script(
-                "window.scrollTo(0, document.body.scrollHeight);")
-            time.sleep(3)
-        hrefs = driver.find_elements_by_tag_name("a")
-        pic_hrefs = [elem.get_attribute("href") for elem in hrefs]
-        print(hashtag + " fotos: " + str(len(pic_hrefs)))
-        testes = [
-            href
-            for href in pic_hrefs
-            if hashtag in href and href.index("https://www.instagram.com/p") != -1
-        ]
+        # driver = self.driver
+        # driver.get("https://www.instagram.com/explore/tags/" + hashtag + "/")
+        # time.sleep(5)
+        # for i in range(
+        #     1, 3
+        # ):  # Altere o segundo valor aqui para que ele desça a quantidade de páginas que você quiser: quer que ele desça 5 páginas então você deve alterar de range(1,3) para range(1,5)
+        #     driver.execute_script(
+        #         "window.scrollTo(0, document.body.scrollHeight);")
+        #     time.sleep(3)
+        # hrefs = driver.find_elements_by_tag_name("a")
+        # pic_hrefs = [elem.get_attribute("href") for elem in hrefs]
+        # print(hashtag + " fotos: " + str(len(pic_hrefs)))
+        # testes = [
+        #     href
+        #     for href in pic_hrefs
+        #     if hashtag in href and href.index("https://www.instagram.com/p") != -1
+        # ]
 
-        for pic_href in pic_hrefs:
-            try:
-                pic_href.index("https://www.instagram.com/p")
-            except ValueError as err:
-                print("pulando link inválido")
-                continue
-            driver.get(pic_href)
-            driver.execute_script(
-                "window.scrollTo(0, document.body.scrollHeight);")
-            try:
-                driver.find_element_by_xpath(
-                    '//section/span/button[@type="button"]').click()
-                time.sleep(random.randint(19, 23))
-            except Exception as e:
-                print(e)
-                time.sleep(5)
+        # for pic_href in pic_hrefs:
+        #     time.sleep(2)
+        #     try:
+        #         pic_href.index("https://www.instagram.com/p")
+        #     except ValueError as err:
+        #         print("pulando link inválido")
+        #         continue
+        #     driver.get(pic_href)
+        #     driver.execute_script(
+        #         "window.scrollTo(0, document.body.scrollHeight);")
+        #     try:
+        #         driver.find_element_by_xpath(
+        #             '//section/span/button[@type="button"]').click()
+        #         time.sleep(random.randint(19, 23))
+        #     except Exception as e:
+        #         print(e)
+        #         time.sleep(5)
         
         self.seguirFollowPerfil("filipedeschamps", 50)
     
@@ -115,15 +117,18 @@ class InstagramBot:
         elems = driver.find_element_by_css_selector("#react-root > section > main > div > header > section [href]").click()
         
         time.sleep(2)
-        driver.find_element_by_css_selector('body > div.RnEpo.Yx5HN > div > div > div.isgrP > ul > div')
+        element = driver.find_element_by_css_selector('body > div.RnEpo.Yx5HN > div > div > div.isgrP')
         time.sleep(2)
-        rounds = (countFollow / 12).ceil()
+        rounds = math.ceil((countFollow / 12))
         print(rounds)
         for i in range(
             1, rounds
         ):  # Altere o segundo valor aqui para que ele desça a quantidade de páginas que você quiser: quer que ele desça 5 páginas então você deve alterar de range(1,3) para range(1,5)
-            driver.execute_script(
-                "window.scrollTo(0, document.body.scrollHeight);")
+            #element.scrollTo(0, 100)
+            #scrollPosition = 357
+            driver.execute_script(#/html/body
+                "let divElem = document.querySelector('body > div.RnEpo.Yx5HN > div > div > div.isgrP');document.querySelector('body > div.RnEpo.Yx5HN > div > div > div.isgrP').scrollTop +=357;"
+            )
             time.sleep(3)
 
 
@@ -131,6 +136,6 @@ jhonatanBot = InstagramBot(
     #está com 170 follows
     # {'domain': '.instagram.com', 'expiry': 1674084111, 'httpOnly': True, 'name': 'sessionid', 'path': '/', 'secure': True, 'value': '51284129573%3AVzR0jTdM6aRo94%3A0'}
     # {'domain': '.instagram.com', 'expiry': 1674219274, 'httpOnly': True, 'name': 'sessionid', 'path': '/', 'secure': True, 'value': '51284129573%3Ag1z6etzQzy2Spv%3A2'}
-    { "domain": ".instagram.com", "expirationDate": 1674219274.173013, "httpOnly": True, "name": "sessionid", "path": "/", "secure": True, "session": False, "value": "51284129573%3AJKkpIyRalHhQQn%3A24"},
+    { "domain": ".instagram.com", "expirationDate": 1674252937.335704, "httpOnly": True, "name": "sessionid", "path": "/", "secure": True, "session": False, "value": "51284129573%3AP0P9jsLyZcpO02%3A18"},
 )  # Entre com o usuário e senha aqui
 jhonatanBot.login()
