@@ -59,7 +59,7 @@ class InstagramBot:
         #//header/section/ul/li[1]/a/span
 
         curtir_fotos_com_a_hastag(self, 
-            "programmer"
+            "programaçao"
         )  # Altere aqui para a hashtag que você deseja usar.
 
     @staticmethod
