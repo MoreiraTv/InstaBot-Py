@@ -2,6 +2,7 @@ from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 import time
 import random
+import math
 from seguir import seguirFollowPerfil
 from curtir import curtir_fotos_com_a_hastag
 
@@ -83,13 +84,14 @@ class InstagramBot:
         time.sleep(2)
         driver.find_element_by_css_selector('body > div.RnEpo.Yx5HN > div > div > div.isgrP > ul > div')
         time.sleep(2)
-        rounds = (countFollow / 12).ceil()
+        rounds = math.ceil((countFollow / 12))
         print(rounds)
         for i in range(
             1, rounds
         ):  # Altere o segundo valor aqui para que ele desça a quantidade de páginas que você quiser: quer que ele desça 5 páginas então você deve alterar de range(1,3) para range(1,5)
             driver.execute_script(
-                "window.scrollTo(0, document.body.scrollHeight);")
+                "let divElem = document.querySelector('body > div.RnEpo.Yx5HN > div > div > div.isgrP');document.querySelector('body > div.RnEpo.Yx5HN > div > div > div.isgrP').scrollTop +=357;"
+            )
             time.sleep(3)
 
 
