@@ -141,22 +141,22 @@ class InstagramBot:
         lastButton = buttons.pop()
         if(lastButton.text == "Seguindo"):
             for z in range(1, pagedrop):
-            self.progress_bar(z/pagedrop)
-            time.sleep(1)
-            driver.execute_script(#/html/body
-                "let divElem = document.querySelector('body > div.RnEpo.Yx5HN > div > div > div.isgrP');document.querySelector('body > div.RnEpo.Yx5HN > div > div > div.isgrP').scrollTop +=365;"
-            )
-            time.sleep(3)
-            buttons = driver.find_elements_by_css_selector('button.sqdOP.L3NKy.y3zKF')
+                self.progress_bar(z/pagedrop)
+                time.sleep(1)
+                driver.execute_script(#/html/body
+                    "let divElem = document.querySelector('body > div.RnEpo.Yx5HN > div > div > div.isgrP');document.querySelector('body > div.RnEpo.Yx5HN > div > div > div.isgrP').scrollTop +=365;"
+                )
+                time.sleep(3)
+                buttons = driver.find_elements_by_css_selector('button.sqdOP.L3NKy.y3zKF')
         if(lastButton.text == "Solicitado"):
             for z in range(1, pagedrop):
-            self.progress_bar(z/pagedrop)
-            time.sleep(1)
-            driver.execute_script(#/html/body
-                "let divElem = document.querySelector('body > div.RnEpo.Yx5HN > div > div > div.isgrP');document.querySelector('body > div.RnEpo.Yx5HN > div > div > div.isgrP').scrollTop +=365;"
-            )
-            time.sleep(3)
-            buttons = driver.find_elements_by_css_selector('button.sqdOP.L3NKy.y3zKF')
+                self.progress_bar(z/pagedrop)
+                time.sleep(1)
+                driver.execute_script(#/html/body
+                    "let divElem = document.querySelector('body > div.RnEpo.Yx5HN > div > div > div.isgrP');document.querySelector('body > div.RnEpo.Yx5HN > div > div > div.isgrP').scrollTop +=365;"
+                )
+                time.sleep(3)
+                buttons = driver.find_elements_by_css_selector('button.sqdOP.L3NKy.y3zKF')
         #f31726da9d07ae > button
         #sqdOP  L3NKy   y3zKF     seguir
         #sqdOP  L3NKy   y3zKF  seguir
