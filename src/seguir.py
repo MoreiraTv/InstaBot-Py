@@ -17,7 +17,7 @@ def seguirFollowPerfil(self, perfil, countFollow):
     rounds = countFollow
     # rounds = math.ceil((countFollow / 12))
     print("rounds: ",rounds)
-    pagedrop = math.ceil((rounds / 2))
+    pagedrop = math.ceil((rounds / 4))
     print("carregando lista de pessoas para seguir!")
     buttons = driver.find_elements_by_css_selector('button.sqdOP.L3NKy.y3zKF')
     for z in range(1, pagedrop):

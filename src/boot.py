@@ -1,8 +1,9 @@
 from __init__ import InstagramBot
-with open("../token_value", "r", encoding="utf-8") as tf:
+
+with open("./credentials/token_value.txt", "r", encoding="utf-8") as tf:
     cookie_value = tf.read()
 
-with open("../token_expiration", "r", encoding="utf-8") as tf:
+with open("./credentials/token_expiration.txt", "r", encoding="utf-8") as tf:
     cookie_expiration = tf.read()
 
 jhonatanBot = InstagramBot(

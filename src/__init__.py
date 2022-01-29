@@ -67,7 +67,7 @@ class InstagramBot:
         # curtir_fotos_com_a_hashtag(self, 
         #     "programacao"
         # )  # Altere aqui para a hashtag que você deseja usar.
-        seguirFollowPerfil(self,"filipedeschamps", 50)
+        seguirFollowPerfil(self,"filipedeschamps", 100)
 
     @staticmethod
     def type_like_a_person(sentence, single_input_field):
