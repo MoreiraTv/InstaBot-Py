@@ -1,5 +1,7 @@
+import time
+import random
 import math
-def progress_bar(self, done):
+def progress_bar(done):
     print("\rProgress: [{0:50s}] {1:.1f}%".format('#' * int(done * 50), done * 100),end='')
 
 def seguirFollowPerfil(self, perfil, countFollow):
@@ -19,7 +21,7 @@ def seguirFollowPerfil(self, perfil, countFollow):
     print("carregando lista de pessoas para seguir!")
     buttons = driver.find_elements_by_css_selector('button.sqdOP.L3NKy.y3zKF')
     for z in range(1, pagedrop):
-        self.progress_bar(z/pagedrop)
+        progress_bar(z/pagedrop)
         time.sleep(1)
         driver.execute_script(#/html/body
             "let divElem = document.querySelector('body > div.RnEpo.Yx5HN > div > div > div.isgrP');document.querySelector('body > div.RnEpo.Yx5HN > div > div > div.isgrP').scrollTop +=365;"
@@ -29,7 +31,7 @@ def seguirFollowPerfil(self, perfil, countFollow):
     lastButton = buttons.pop()
     if(lastButton.text == "Seguindo"):
         for z in range(1, pagedrop):
-            self.progress_bar(z/pagedrop)
+            progress_bar(z/pagedrop)
             time.sleep(1)
             driver.execute_script(#/html/body
                 "let divElem = document.querySelector('body > div.RnEpo.Yx5HN > div > div > div.isgrP');document.querySelector('body > div.RnEpo.Yx5HN > div > div > div.isgrP').scrollTop +=365;"
@@ -38,7 +40,7 @@ def seguirFollowPerfil(self, perfil, countFollow):
             buttons = driver.find_elements_by_css_selector('button.sqdOP.L3NKy.y3zKF')
     if(lastButton.text == "Solicitado"):
         for z in range(1, pagedrop):
-            self.progress_bar(z/pagedrop)
+            progress_bar(z/pagedrop)
             time.sleep(1)
             driver.execute_script(#/html/body
                 "let divElem = document.querySelector('body > div.RnEpo.Yx5HN > div > div > div.isgrP');document.querySelector('body > div.RnEpo.Yx5HN > div > div > div.isgrP').scrollTop +=365;"

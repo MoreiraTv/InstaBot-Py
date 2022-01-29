@@ -3,7 +3,7 @@ from selenium.webdriver.common.keys import Keys
 from time import sleep
 from random import randint
 
-def curtir_fotos_com_a_hastag(self, hashtag):
+def curtir_fotos_com_a_hashtag(self, hashtag):
     driver = self.driver
     driver.get("https://www.instagram.com/explore/tags/" + hashtag + "/")
     sleep(5)
@@ -29,31 +29,21 @@ def curtir_fotos_com_a_hastag(self, hashtag):
             print("pulando link inválido")
             continue
         driver.get(pic_href)
-        driver.execute_script(
-            "window.scrollTo(0, document.body.scrollHeight);")
+        # driver.execute_script(
+        #     "window.scrollTo(0, document.body.scrollHeight);")
         try:
             section = driver.find_element_by_xpath("//*/section/main/div/div[1]/article/div/div[2]/div/div[2]/section[1]")
             buttonLike = section.find_element_by_css_selector("button.wpO6b")
             if buttonLike:
-                buttonLike.click()
-                test = buttonLike.find_elements_by_tag_name("svg").get_attribute("color")
-                print(test)
+                isLiked = buttonLike.find_element_by_tag_name("svg").get_attribute("aria-label")
+                if isLiked == "Curtir":
+                    buttonLike.click()
+                    sleep(randint(19, 23))
+                else:
+                    print("Publicação já estava curtida")
+                    sleep(randint(5, 15))
 
-                """"##ed4956 para descurtir"""
 
-                """#262626 para curtir"""
-
-                # print(test.get_attribute("value"))
-                # print(get_property("value"))
-
-                #driver.find_element_by_xpath("//*[@aria-label='Curtir']")
-
-            # if(buttonCurtir):
-            #     driver.find_element_by_xpath("//*[@aria-label='Curtir']").click()
-            #driver.find_element_by_xpath("//*[@aria-label='Like']")
-            #driver.find_element_by_xpath("//*[@aria-label='Curtir']")
-
-            sleep(randint(19, 23))
         except Exception as e:
             print(e)
             sleep(5)
