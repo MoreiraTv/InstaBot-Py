@@ -32,7 +32,16 @@ def curtir_fotos_com_a_hastag(self, hashtag):
         driver.execute_script(
             "window.scrollTo(0, document.body.scrollHeight);")
         try:
-            driver.find_element_by_xpath("//*[@aria-label='Like']").click()
+            section = driver.find_element_by_css_selector("section.ltpMr.Slqrh")
+            buttonLike = section.find_element_by_css_selector("button.wpO6b")
+            if(buttonLike):
+                test = buttonLike
+                buttonLike.click()
+                print(test)
+            # if(buttonCurtir):
+            #     driver.find_element_by_xpath("//*[@aria-label='Curtir']").click()
+            #driver.find_element_by_xpath("//*[@aria-label='Like']")
+            #driver.find_element_by_xpath("//*[@aria-label='Curtir']")
 
             sleep(randint(19, 23))
         except Exception as e:

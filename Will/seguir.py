@@ -5,13 +5,13 @@ def progress_bar(self, done):
 def seguirFollowPerfil(self, perfil, countFollow):
     driver = self.driver
     driver.get("https://www.instagram.com/" + perfil)
-    time.sleep(3)
+    time.sleep(random.randint(2, 5))
     hrefPerfil = '/'+ perfil + '/followers/'
     elems = driver.find_element_by_css_selector("#react-root > section > main > div > header > section [href]").click()
     
-    time.sleep(2)
+    time.sleep(random.randint(2, 5))
     element = driver.find_element_by_css_selector('body > div.RnEpo.Yx5HN > div > div > div.isgrP')
-    time.sleep(2)
+    time.sleep(random.randint(2, 3))
     rounds = countFollow
     # rounds = math.ceil((countFollow / 12))
     print("rounds: ",rounds)
@@ -24,7 +24,7 @@ def seguirFollowPerfil(self, perfil, countFollow):
         driver.execute_script(#/html/body
             "let divElem = document.querySelector('body > div.RnEpo.Yx5HN > div > div > div.isgrP');document.querySelector('body > div.RnEpo.Yx5HN > div > div > div.isgrP').scrollTop +=365;"
         )
-        time.sleep(3)
+        time.sleep(random.randint(2, 5))
         buttons = driver.find_elements_by_css_selector('button.sqdOP.L3NKy.y3zKF')
     lastButton = buttons.pop()
     if(lastButton.text == "Seguindo"):
@@ -34,7 +34,7 @@ def seguirFollowPerfil(self, perfil, countFollow):
             driver.execute_script(#/html/body
                 "let divElem = document.querySelector('body > div.RnEpo.Yx5HN > div > div > div.isgrP');document.querySelector('body > div.RnEpo.Yx5HN > div > div > div.isgrP').scrollTop +=365;"
             )
-            time.sleep(3)
+            time.sleep(random.randint(2, 5))
             buttons = driver.find_elements_by_css_selector('button.sqdOP.L3NKy.y3zKF')
     if(lastButton.text == "Solicitado"):
         for z in range(1, pagedrop):
@@ -43,7 +43,7 @@ def seguirFollowPerfil(self, perfil, countFollow):
             driver.execute_script(#/html/body
                 "let divElem = document.querySelector('body > div.RnEpo.Yx5HN > div > div > div.isgrP');document.querySelector('body > div.RnEpo.Yx5HN > div > div > div.isgrP').scrollTop +=365;"
             )
-            time.sleep(3)
+            time.sleep(random.randint(2, 5))
             buttons = driver.find_elements_by_css_selector('button.sqdOP.L3NKy.y3zKF')
     #f31726da9d07ae > button
     #sqdOP  L3NKy   y3zKF     seguir
@@ -57,7 +57,7 @@ def seguirFollowPerfil(self, perfil, countFollow):
     # pic_buttons = [for elem in buttons]
     x = 1
     for pic_button in buttons:
-        time.sleep(2)
+        time.sleep(random.randint(3, 5))
         # driver.get(pic_button)
         print("já seguimos: ", x)
         if(x == rounds): break
@@ -70,7 +70,7 @@ def seguirFollowPerfil(self, perfil, countFollow):
             else:
                 pic_button.click()
                 x = x + 1
-            time.sleep(random.randint(2, 6))
+            time.sleep(random.randint(4, 8))
                 
         except Exception as e:
             print("error: ",e)
@@ -78,4 +78,4 @@ def seguirFollowPerfil(self, perfil, countFollow):
     
         #element.scrollTo(0, 100)
         #scrollPosition = 357
-    print("acamos de seguir")
+    print("acabamos de seguir")

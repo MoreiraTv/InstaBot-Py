@@ -23,6 +23,7 @@ def login(self):
     sizeElement = len(driver.find_elements_by_xpath('/html/body/div[5]/div/div/div/div[3]/button[2]'))
     isPresent = sizeElement > 0
     
+    time.sleep(3)
     if isPresent:
         driver.find_element_by_xpath('/html/body/div[5]/div/div/div/div[3]/button[2]').click()
     

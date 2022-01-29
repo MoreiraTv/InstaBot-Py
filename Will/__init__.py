@@ -5,10 +5,14 @@ import random
 import math
 from seguir import seguirFollowPerfil
 from curtir import curtir_fotos_com_a_hastag
+from commentPost import InstagramBotComment
 
 class InstagramBot:
     def __init__(self, cookies):
         self.cookies = cookies
+        # ChromeProfile = webdriver.ChromeProfile()
+        # ChromeProfile.set_preference("intl.accept_languages", "pt,pt-BR")
+        # ChromeProfile.set_preference("dom.webnotifications.enabled", False)
         self.driver = webdriver.Chrome(
             executable_path=r"./chromedriver.exe"
         )  # Coloque o caminho para o seu geckodriver aqui
@@ -17,7 +21,7 @@ class InstagramBot:
     def login(self):
         driver = self.driver
         driver.get("https://www.instagram.com")
-        time.sleep(3)
+        time.sleep(random.randint(2, 5))
         try:
             login_button = driver.find_element_by_xpath(
                 "//a[@href='/accounts/login/?source=auth_switcher']"
@@ -27,7 +31,7 @@ class InstagramBot:
             print('já estamos na página de login')
             pass
         
-        time.sleep(3)
+        time.sleep(random.randint(2, 5))
         #entrando na conta de usario pela sesion Id token sem precisar da senha do usuario
         driver.add_cookie(self.cookies)
 
@@ -40,10 +44,11 @@ class InstagramBot:
         isPresent = sizeElement > 0
         
         if isPresent:
+            time.sleep(random.randint(2, 5))
             driver.find_element_by_xpath('/html/body/div[5]/div/div/div/div[3]/button[2]').click()
         
         #/html/body/div[5]/div/div/div/div[3]/button[2]
-        
+        time.sleep(random.randint(2, 3))
         self.capturaFollowCount()
         
 
@@ -51,17 +56,18 @@ class InstagramBot:
     def capturaFollowCount(self):
         driver = self.driver
         driver.find_element_by_xpath('//section/nav/div[2]/div/div/div[3]/div/div[6]/span').click()
-        time.sleep(3)
+        time.sleep(random.randint(2, 5))
         driver.find_element_by_xpath('//section/nav/div[2]/div/div/div[3]/div/div[6]/div[2]/div[2]/div[2]/a[1]').click()
-        time.sleep(2)
+        time.sleep(random.randint(2, 5))
         follows = driver.find_element_by_xpath('//header/section/ul/li[2]/a/span').text
         
-        print(follows)
+        print("Começando o codigo com ",follows,"seguidores")
         #//header/section/ul/li[1]/a/span
 
         curtir_fotos_com_a_hastag(self, 
-            "programaçao"
+            "programacao"
         )  # Altere aqui para a hashtag que você deseja usar.
+        seguirFollowPerfil("filipedeschamps", 50)
 
     @staticmethod
     def type_like_a_person(sentence, single_input_field):
@@ -70,29 +76,27 @@ class InstagramBot:
         for letter in sentence:
             single_input_field.send_keys(letter)
             time.sleep(random.randint(1, 5) / 30)
-        
-        self.seguirFollowPerfil("filipedeschamps", 50)
     
-    def seguirFollowPerfil(self, perfil, countFollow):
-        driver = self.driver
+    # def seguirFollowPerfil(self, perfil, countFollow):
+    #     driver = self.driver
 
-        driver.get("https://www.instagram.com/" + perfil)
-        time.sleep(3)
-        hrefPerfil = '/'+ perfil + '/followers/'
-        elems = driver.find_element_by_css_selector("#react-root > section > main > div > header > section [href]").click()
+    #     driver.get("https://www.instagram.com/" + perfil)
+    #     time.sleep(3)
+    #     hrefPerfil = '/'+ perfil + '/followers/'
+    #     elems = driver.find_element_by_css_selector("#react-root > section > main > div > header > section [href]").click()
         
-        time.sleep(2)
-        driver.find_element_by_css_selector('body > div.RnEpo.Yx5HN > div > div > div.isgrP > ul > div')
-        time.sleep(2)
-        rounds = math.ceil((countFollow / 12))
-        print(rounds)
-        for i in range(
-            1, rounds
-        ):  # Altere o segundo valor aqui para que ele desça a quantidade de páginas que você quiser: quer que ele desça 5 páginas então você deve alterar de range(1,3) para range(1,5)
-            driver.execute_script(
-                "let divElem = document.querySelector('body > div.RnEpo.Yx5HN > div > div > div.isgrP');document.querySelector('body > div.RnEpo.Yx5HN > div > div > div.isgrP').scrollTop +=357;"
-            )
-            time.sleep(3)
+    #     time.sleep(random.randint(2, 4))
+    #     driver.find_element_by_css_selector('body > div.RnEpo.Yx5HN > div > div > div.isgrP > ul > div')
+    #     time.sleep(random.randint(2, 4))
+    #     rounds = math.ceil((countFollow / 12))
+    #     print(rounds)
+    #     for i in range(
+    #         1, rounds
+    #     ):  # Altere o segundo valor aqui para que ele desça a quantidade de páginas que você quiser: quer que ele desça 5 páginas então você deve alterar de range(1,3) para range(1,5)
+    #         driver.execute_script(
+    #             "let divElem = document.querySelector('body > div.RnEpo.Yx5HN > div > div > div.isgrP');document.querySelector('body > div.RnEpo.Yx5HN > div > div > div.isgrP').scrollTop +=357;"
+    #         )
+    #         time.sleep(random.randint(1, 5))
 
 
 
