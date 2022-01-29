@@ -76,34 +76,4 @@ class InstagramBot:
         for letter in sentence:
             single_input_field.send_keys(letter)
             time.sleep(random.randint(1, 5) / 30)
-    
-    # def seguirFollowPerfil(self, perfil, countFollow):
-    #     driver = self.driver
 
-    #     driver.get("https://www.instagram.com/" + perfil)
-    #     time.sleep(3)
-    #     hrefPerfil = '/'+ perfil + '/followers/'
-    #     elems = driver.find_element_by_css_selector("#react-root > section > main > div > header > section [href]").click()
-        
-    #     time.sleep(random.randint(2, 4))
-    #     driver.find_element_by_css_selector('body > div.RnEpo.Yx5HN > div > div > div.isgrP > ul > div')
-    #     time.sleep(random.randint(2, 4))
-    #     rounds = math.ceil((countFollow / 12))
-    #     print(rounds)
-    #     for i in range(
-    #         1, rounds
-    #     ):  # Altere o segundo valor aqui para que ele desça a quantidade de páginas que você quiser: quer que ele desça 5 páginas então você deve alterar de range(1,3) para range(1,5)
-    #         driver.execute_script(
-    #             "let divElem = document.querySelector('body > div.RnEpo.Yx5HN > div > div > div.isgrP');document.querySelector('body > div.RnEpo.Yx5HN > div > div > div.isgrP').scrollTop +=357;"
-    #         )
-    #         time.sleep(random.randint(1, 5))
-
-
-
-# jhonatanBot = InstagramBot(
-#     #está com 170 follows
-#     # {'domain': '.instagram.com', 'expiry': 1674084111, 'httpOnly': True, 'name': 'sessionid', 'path': '/', 'secure': True, 'value': '51284129573%3AVzR0jTdM6aRo94%3A0'}
-#     # {'domain': '.instagram.com', 'expiry': 1674219274, 'httpOnly': True, 'name': 'sessionid', 'path': '/', 'secure': True, 'value': '51284129573%3Ag1z6etzQzy2Spv%3A2'}
-#     { "domain": ".instagram.com", "expirationDate": cookie_expiration, "httpOnly": True, "name": "sessionid", "path": "/", "secure": True, "session": False, "value": cookie_value},
-# )  # Entre com o usuário e senha aqui
-# jhonatanBot.login()

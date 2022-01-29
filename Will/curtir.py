@@ -32,12 +32,22 @@ def curtir_fotos_com_a_hastag(self, hashtag):
         driver.execute_script(
             "window.scrollTo(0, document.body.scrollHeight);")
         try:
-            section = driver.find_element_by_css_selector("section.ltpMr.Slqrh")
+            section = driver.find_element_by_xpath("//*/section/main/div/div[1]/article/div/div[2]/div/div[2]/section[1]")
             buttonLike = section.find_element_by_css_selector("button.wpO6b")
-            if(buttonLike):
-                test = buttonLike
+            if buttonLike:
                 buttonLike.click()
+                test = buttonLike.find_elements_by_tag_name("svg").get_attribute("color")
                 print(test)
+
+                """"##ed4956 para descurtir"""
+
+                """#262626 para curtir"""
+
+                # print(test.get_attribute("value"))
+                # print(get_property("value"))
+
+                #driver.find_element_by_xpath("//*[@aria-label='Curtir']")
+
             # if(buttonCurtir):
             #     driver.find_element_by_xpath("//*[@aria-label='Curtir']").click()
             #driver.find_element_by_xpath("//*[@aria-label='Like']")
