@@ -4,8 +4,9 @@ import time
 import random
 import math
 from seguir import seguirFollowPerfil
+from curtirComment import comente_e_curti_nas_fotos_com_a_hashtag
 from curtir import curtir_fotos_com_a_hashtag
-from commentPost import InstagramBotComment
+#from commentPost import InstagramBotComment
 
 class InstagramBot:
     def __init__(self, cookies):
@@ -65,9 +66,10 @@ class InstagramBot:
         #//header/section/ul/li[1]/a/span
 
         # curtir_fotos_com_a_hashtag(self, 
-        #     "programacao"
+        #     "memesbr"
         # )  # Altere aqui para a hashtag que você deseja usar.
-        seguirFollowPerfil(self,"filipedeschamps", 100)
+        #seguirFollowPerfil(self,"filipedeschamps", 100)
+        comente_e_curti_nas_fotos_com_a_hashtag(self,"memesbr")
 
     @staticmethod
     def type_like_a_person(sentence, single_input_field):

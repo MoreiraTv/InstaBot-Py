@@ -8,7 +8,7 @@ def curtir_fotos_com_a_hashtag(self, hashtag):
     driver.get("https://www.instagram.com/explore/tags/" + hashtag + "/")
     sleep(5)
     for i in range(
-        1, 3
+        1, 8
     ):  # Altere o segundo valor aqui para que ele desça a quantidade de páginas que você quiser: quer que ele desça 5 páginas então você deve alterar de range(1,3) para range(1,5)
         driver.execute_script(
             "window.scrollTo(0, document.body.scrollHeight);")
@@ -21,14 +21,16 @@ def curtir_fotos_com_a_hashtag(self, hashtag):
         for href in pic_hrefs
         if hashtag in href and href.index("https://www.instagram.com/p") != -1
     ]
-
+    nCurtidas = 0
     for pic_href in pic_hrefs:
         try:
             pic_href.index("https://www.instagram.com/p")
         except ValueError as err:
             print("pulando link inválido")
             continue
+        sleep(2)
         driver.get(pic_href)
+        sleep(2)
         # driver.execute_script(
         #     "window.scrollTo(0, document.body.scrollHeight);")
         try:
@@ -38,6 +40,8 @@ def curtir_fotos_com_a_hashtag(self, hashtag):
                 isLiked = buttonLike.find_element_by_tag_name("svg").get_attribute("aria-label")
                 if isLiked == "Curtir":
                     buttonLike.click()
+                    nCurtidas= nCurtidas + 1
+                    print(nCurtidas)
                     sleep(randint(19, 23))
                 else:
                     print("Publicação já estava curtida")
